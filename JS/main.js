@@ -13,6 +13,9 @@ $(document).ready(function () {
 	});
 	mMenu.on('click', function(){
 		mMenu.toggleClass("active");
+		mMenuBtn.toggleClass("active");
+		line.toggleClass("active");
+		$('body').toggleClass("no-scroll");
 	});
 	playlistLink.on('click', function(){
 		audio.play();
