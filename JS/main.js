@@ -2,15 +2,20 @@ $(document).ready(function () {
 	const mMenuBtn = $(".burger");
 	const mMenu = $(".m-menu");
 	const line = $(".line");
-	const before = $(".before");
-	const after = $(".after");
+	const playlistLink = $(".playlist-link");
+	const audio = document.getElementById("audio");
 
 	mMenuBtn.on('click', function() {
 		mMenu.toggleClass("active");
-		before.toggleClass("active");
+		mMenuBtn.toggleClass("active");
 		line.toggleClass("active");
-		after.toggleClass("active");
 		$('body').toggleClass("no-scroll");
+	});
+	mMenu.on('click', function(){
+		mMenu.toggleClass("active");
+	});
+	playlistLink.on('click', function(){
+		audio.play();
 	});
 
 	var mySwiper = new Swiper ('.swiper-container', {

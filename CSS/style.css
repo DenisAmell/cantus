@@ -18,6 +18,7 @@ html{
     position: sticky;
     top: 0;
     right: 0;
+    z-index: 50;
 }
 .navigation{
     display: flex;
@@ -394,9 +395,14 @@ html{
     padding: 0;
 }
 .playlist ul li{
-    height: 35px;
-    display: block;
-    border-bottom: 1px solid #ccc;
+    height: 65px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+}
+audio{
+    height: 40px;
+    width: 230px;
 }
 .playlist-link{
     text-decoration: none;
@@ -505,18 +511,22 @@ html{
     font-family: 'Dancing Script', cursive;
 }
 .m-menu{
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 100px;
+    top: -100%;
     left: 0;
     right: 0;
     bottom: 0;
-    height: calc(100%-100px);
+    height: 100%;
+    width: 100%;
     background: #df001f;
     font-size: 20px;
+    transition: all 0.3s ease 0s;
+    z-index: -1;
+    overflow: auto;
 }
 .mobile{
     text-align: center;
@@ -550,46 +560,53 @@ html{
 }
 .burger{
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    width: 40px;
-    background: transparent;
-    margin-right: 30px;
+    position: relative;
+    height: 20px;
+    width: 30px;
     cursor: pointer;
+    margin-right: 30px;
+}
+.burger::before{
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 0;
+    transition: all 0.3s ease 0s;
+}
+.burger::after{
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    transition: all 0.3s ease 0s;
 }
 .line{
-    width: 35px;
+    width: 100%;
     height: 2px;
     background-color: #fff;
-    margin-top: 10px;
-}
-.before{
-    width: 35px;
-    height: 2px;
-    background-color: #fff;
-    margin-top: 10px;
-}
-.after{
-    width: 35px;
-    height: 2px;
-    background-color: #fff;
-    margin-top: 10px;
-}
-.before.active{
-    transform: rotate(45deg);
-    transition-duration: 1s;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    transition: all 0.3s ease 0s;
 }
 .line.active{
-    display: none;
-    transition-duration: 1s;
+    transform: scale(0);
 }
-.after.active{
-    margin: 0 0 10px 1px;
+.burger.active::before{
+    transform: rotate(45deg);
+    top: 9px;
+}
+.burger.active::after{
     transform: rotate(-45deg);
-    transition-duration: 1s;
+    bottom: 9px;
 }
+
 
 
 
@@ -612,6 +629,9 @@ html{
     .playlist-wrapper {
         justify-content: space-between;
         width: 520px;
+    }
+    .playlist:last-child{
+        display: none;
     }
 }
 @media (max-width: 991px){
@@ -652,7 +672,7 @@ html{
         width: 400px;
     }
     .playlist {
-        max-width: 115px;
+        max-width: 250px;
     }
     .song img{
         width: 250px;
@@ -660,6 +680,9 @@ html{
     .team-card{
         margin: auto;
         margin-top: 40px;
+    }
+    .playlist:first-child{
+        display: none;
     }
 }
 @media (max-width: 768px){
@@ -669,14 +692,21 @@ html{
     .navigation{
         display: none;
     }
+    .header{
+        height: 70px;
+    }
+    .logo img{
+        max-width: 100px;
+    }
     .button{
         display: none;
     }
     .m-menu.active{
         display: flex;
+        top: 69px;
     }
     .burger{
-        display: flex;
+        display: block;
     }
     .instagram{
         display: none;
@@ -696,8 +726,8 @@ html{
     .playlist-wrapper {
         width: 500px;
     }
-    .playlist {
-        max-width: 115px;
+    .playlist li{
+        width: 250px;
     }
     .song img{
         width: 350px;
@@ -707,22 +737,6 @@ html{
     }
     .header-next{
         background-position: right center;
-    }
-}
-@media (max-height: 500px){
-    .m-menu{
-        font-size: 14px;
-    }
-    .m-button{
-        margin-top: 20px;
-    }
-    .mobile .navigation-link{
-        margin-top: 20px;
-    }
-    .m-icon-group{
-        display: flex;
-        margin-top: 10px;
-        margin-left: 20px;
     }
 }
 
@@ -767,8 +781,18 @@ html{
     .playlist-wrapper{
         width: 300px;
     }
+    .playlist li{
+        width: 250px;
+    }
+    audio{
+        margin-left: 20px;
+    }
     .playlist:last-child{
         display: none;
+    }
+    .playlist-link{
+        font-size: 14px;
+        margin: auto;
     }
     .bord-text{
         font-size: 14px;
@@ -781,13 +805,15 @@ html{
     }
     .footer-nav{
         display: block;
+        margin-left: 50px;
     }
     .footer-link{
-        font-size: 16px;
+        font-size: 14px;
+        display: inline-block;
         margin-top: 20px;
     }
     .footer-text{
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 @media (max-width: 320px){
@@ -807,6 +833,16 @@ html{
     .track img{
         max-width: 100px;
     }
+    .playlist li{
+        width: 250px;
+    }
+    audio{
+        margin-left: 20px;
+    }
+    .playlist-link{
+        font-size: 12px;
+        margin: auto;
+    }
     .song{
         margin-left: 10px;
     }
@@ -818,5 +854,18 @@ html{
     }
     .button-event{
         width: 120px;
+    }
+    .footer-nav{
+        display: block;
+        margin-left: 50px;
+    }
+    .footer-link{
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+    .footer-text{
+        display: none;
     }
 }
