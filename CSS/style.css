@@ -8,6 +8,16 @@ body{
 html{
     scroll-behavior: smooth;
 }
+.anim-show{
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+.anim-show.active,
+.active .anim-show{
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
 .header{
     background-color: #df001f;
     color: #fff;
@@ -73,6 +83,9 @@ html{
     display: flex;
     flex-direction: column;
     align-items: center;
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
 }
 .title h1{
     margin: 0;
@@ -98,10 +111,23 @@ html{
     margin-top: 100px;
     cursor: pointer;
     transition-duration: 1s;
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
 }
 .more:hover{
     background-color: #fff;
     color: #df001f;
+}
+
+.title.active{
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+.more.active{
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: all 0.8s ease 0.5s;
 }
 
 
@@ -118,6 +144,15 @@ html{
     margin-top: 100px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 100px;
+}
+.members-title{
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+.members-title.active{
+    transform: translate(0px, 0px);
+    opacity: 1;
 }
 .members-title h2{
     margin: 0;
@@ -235,13 +270,28 @@ html{
     background-repeat: no-repeat;
     color: #fff;
     font-size: 30px;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.date.active,
+.active .date{
+    transform: scale(1);
 }
 .events-text{
     display: flex;
     flex-direction: column;
     text-align: left;
     margin-left: 50px; 
-    height: 290px;   
+    height: 290px;
+    transform: translate(-50%, 0px);
+    opacity: 0;
+    transition: all 0.3 ease 0s;  
+}
+.events-text.active,
+.active .events-text{
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: all 0.8s ease 0.6s;
 }
 .event-title{
     font-size: 22px;
@@ -278,6 +328,12 @@ html{
     background-position: center center;
     background-repeat: no-repeat;
     cursor: pointer;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.video.active,
+.active .video{
+    transform: scale(1);
 }
 .buttons-slider2{
     width: 30px;
@@ -304,6 +360,12 @@ html{
     color: #fff;
     background-image: url(../img/history.jpg);
     height: 370px;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.history.active,
+.active .history{
+    transform: scale(1);
 }
 .history-wrapper{
     max-width: 600px;
@@ -352,6 +414,12 @@ html{
     display: flex;
     align-items: center;
     margin-top: 20px;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.track.active,
+.active .track{
+    transform: scale(1);
 }
 .song{
     margin-left: 30px;
@@ -390,6 +458,26 @@ html{
     max-width: 250px;
     margin-top: 30px;
 }
+.playlist-wrapper .playlist{
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.3s ease 0s; 
+}
+.playlist-wrapper.active .playlist:nth-child(1){
+    transition: all 0.9s ease 0.3s;
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+.playlist-wrapper.active .playlist:nth-child(2){
+    transition: all 0.9s ease 0.6s;
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+.playlist-wrapper.active .playlist:nth-child(3){
+    transition: all 0.9s ease 0.9s;
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
 .playlist ul{
     list-style-type: none;
     padding: 0;
@@ -422,6 +510,12 @@ audio{
 .photo img{
     margin-top: 20px;
     max-width: 150px;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.photo.active img,
+.active .photo img{
+    transform: scale(1);
 }
 .advertising{
     display: flex;
@@ -436,6 +530,12 @@ audio{
     align-items: center;
     height: 350px;
     color: #fff;
+    transform: scale(0);
+    transition: all 0.8s ease 0s;
+}
+.bord.active,
+.active .bord{
+    transform: scale(1);
 }
 .bord-buton-group{
     display: flex;
